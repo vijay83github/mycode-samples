@@ -1,0 +1,23 @@
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/apps/resources/scripts/quova/plugin/jquery.neuframe.1.0.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#my-login-div').neuframe({
+            width: "345px",
+            height: "305px",
+            appName: "login",
+            env: "dev",
+            productId: "<%-data.category %>",
+            successCallback: function(data) {
+                console.log("My app login successfully!");
+                console.log("do something interesting before leaving login page..");
+                return true;
+            },
+            failureCallback: function(data) {
+                console.log("My app login failed!");
+                return true;
+            }
+        });
+    });
+</script>

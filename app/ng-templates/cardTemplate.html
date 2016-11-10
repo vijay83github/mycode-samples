@@ -1,0 +1,34 @@
+
+
+
+
+
+<div ng-mouseenter="openOptions()"
+     ng-mouseleave="closeOptions()">
+
+  <a ng-href='#/productSelection/{{each}}' ng-click="goRight()">
+    <span class="name" ng-transclude></span> 
+    <i class="fa fa-arrow-circle-right"></i> 
+  </a>
+
+  <div ng-if="showOptions" style="font-size:15px;">
+
+    <a ng-href='#/productSelection/{{each}}'>
+       <span style="margin-right:10px;"
+          ng-click="goRight()">Edit</span>
+    </a>
+    
+
+    <a ng-href='{{regUrl}}'>
+    <span style="margin:10px;"
+          ng-click="goPreviewRegistration()">Preview Registration</span>
+    </a>
+
+    <a ng-href='{{loginUrl}}'>
+    <span style="margin-left:10px;"
+          ng-click="goPreviewLogin()">Preview Login</span>
+    </a>
+
+  </div>
+
+</div>

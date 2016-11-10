@@ -1,0 +1,75 @@
+<fieldset>
+    <legend>Create a Login</legend>
+
+<dl>
+
+<% if(!useEmailForUsername) { %>
+        <dt><label>Email:</label></dt>
+        <dd><input type="text" id="email" name="email" class="asterisk email"/></dd>
+      <% if(confirmEmail && confirmEmail == true) { %>
+        <dt><label>Confirm Email:</label></dt>
+        <dd><input type="text" id="confirm-email" name="confirmEmail" class="asterisk confirmEmail"
+                   tooltip="Please match the login Email" /></dd>
+<% }} %>
+
+<% if(useEmailForUsername == true) { %>
+    <!-- Login Email -->
+    <dt><label>Login Email:</label></dt>
+    <dd><input type="text" id="login-email" name="email" autocomplete="off"
+			   class="asterisk email loginId" tooltip="example@example.com"/>
+        <span class="field-loader"></span>
+    </dd>
+
+    <dt><label>Confirm Login Email:</label></dt>
+    <dd><input type="text" id="confirm-username" name="username" autocomplete="off"
+               class="asterisk confirmLoginEmail" tooltip="Please match the login Email"/></dd>
+    <!-- End of Login Email -->
+<% } else { %>
+    <!-- Login Username -->
+    <dt>
+        <label for="username">Username:</label>
+    </dt>
+    <dd>
+        <input type="text" id="username" name="username" class="asterisk loginId username" placeholder="johndoe"/>
+        <span class="field-loader"></span>
+    </dd>
+    <!-- End of Login Username -->
+<% } %>
+
+    <dt><label for="password">Password:</label></dt>
+    <dd>
+        <input type="password" id="password" name="password" class="asterisk password"
+               tooltip="<%=jQuery.i18n.prop('messages.common.validate.password_requirements')%>"/>
+        <div id="password-strength">
+            <ul class="weak">
+                <li id="iWeak">Weak</li>
+                <li id="iMedium">Medium</li>
+                <li id="iStrong">Strong</li>
+            </ul>
+        </div>
+    </dd>
+
+    <dt><label for="confirm-password">Confirm Password:</label></dt>
+    <dd>
+        <input type="password" id="confirm-password" name="confirmPassword" class="asterisk confirmPassword"
+               tooltip="Please match the Password above" />
+    </dd>
+
+    </dl>
+</fieldset>
+
+<fieldset>
+    <legend>Contact Information</legend>
+<dl>
+    <dt><label>First Name:</label></dt>
+    <dd><input id="first-name" name="firstName" type="text" class="asterisk name" placeholder="John"/></dd>
+
+    <dt><label>Last Name:</label></dt>
+    <dd><input id="last-name" name="lastName" type="text" class="asterisk name" placeholder="Doe"/></dd>
+
+    <dt><label>Company:</label></dt>
+    <dd>
+        <input type="text" id="company" name="organization" class="asterisk organization" placeholder="John Doe Co."/>
+    </dd>
+</dl>
+</fieldset>

@@ -1,0 +1,12 @@
+jQuery.activity-indicator.js
+    Description: Failed in Chrome
+
+    FROM:
+        document.styleSheets[0].insertRule(rule);
+    TO:
+        var stylesheetElement = document.createElement('style');
+        document.getElementsByTagName('head')[0].appendChild(stylesheetElement);
+        var insertedStylesheet = stylesheetElement.sheet || stylesheetElement.styleSheet;
+        if (insertedStylesheet.insertRule) {
+            insertedStylesheet.insertRule(rule, insertedStylesheet.cssRules.length);
+        }

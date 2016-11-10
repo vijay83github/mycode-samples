@@ -1,0 +1,35 @@
+{
+  "java" : { 
+    "install_flavor": "openjdk",
+  	"jdk_version" : "7" 
+  },
+  "neu_service" : {
+    "name" : "accessmanagement-service",
+    "service_namespace" : "biz/neustar",
+    "pkg_ext" : "zip",
+    "accessmanagement-service": {
+      "installed_on": "",
+      "installed": "",
+      "previous": "",
+      "on_deck_on": "",
+      "on_deck": "@version@"
+    }
+  },
+  "java_cert_install": {
+    "host" : "ldapauth-vip.neustar.biz",
+    "port" : 636,
+    "keytool_alias": "ldap_cert",
+    "keystore_pass": "changeit"
+  },
+  "package_install": {
+    "package_list": "jq"
+  },
+  "run_list": [
+    "recipe[chef-utils::fix_home_env]",
+    "recipe[java_cert_install::default]",
+    "recipe[neu-service::default]",
+  	"recipe[mailutils::default]",
+  	"recipe[crontab-entry::default]",
+    "recipe[package_install::default]"
+  ]
+}

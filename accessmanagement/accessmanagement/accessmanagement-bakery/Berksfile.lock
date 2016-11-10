@@ -1,0 +1,38 @@
+{
+  "sources": {
+    "java": {
+      "locked_version": "1.15.4"
+    },
+    "neu-service": {
+      "locked_version": "0.4.4",
+      "git": "ssh://git@git.nexgen.neustar.biz:8022/neustar/neu-service-cookbook.git",
+      "ref": "6c027fec1d3f1e3fcb114e43cb875775e78a43dc"
+    },
+    "chef-utils": {
+      "locked_version": "0.0.1",
+      "git": "ssh://git@git.nexgen.neustar.biz:8022/neustar/chef-utils-cookbook.git",
+      "ref": "930ec48d0a43aab496b9c8a7ab552279b972f28a"
+    },
+    "windows": {
+      "locked_version": "1.11.0"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "aws": {
+      "locked_version": "1.0.0"
+    },
+    "artifact": {
+      "locked_version": "1.11.2"
+    },
+    "runit": {
+      "locked_version": "1.4.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "yum": {
+      "locked_version": "2.4.4"
+    }
+  }
+}

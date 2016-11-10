@@ -1,0 +1,211 @@
+<p></p>
+<h3 class="one-line">Configure your header (applies to all pages)</h3>
+<p>
+</p>
+
+<div id="new-product-content" class="ui-helper-cleafix">
+  
+  <!-- <form action="/apps/admin/config/gp.od.dev.nsr" method="put" enctype="multipart/form-data">
+      What is your name? <input type="text" name="submit-name"><br>
+      What files are you sending? <input type="file" name="files"><br>
+      <input type="submit" value="Send"> <input type="reset">
+  </form> -->
+
+
+	<form id="new-product-form" method="put" >
+
+        <!-- ================ -->
+        <!-- Product Id Field -->
+        <!-- ================ -->
+
+        <table class="horizontal" width="100%">
+			    <tbody>
+
+                <tr>
+
+                  <td width="30%">
+                    <label for="product_name_create" class="form-label" title="Your product ID">
+                      <%=messages.admin.product.category %>:
+                    </label>
+                  </td>
+
+                  <td width="70%" class="field-group">
+
+                      <input type="text" 
+                             id="product_name_create" 
+                             name="product_name" 
+                             class="input-field product-name"
+                             value="<%- data.category %>"/>
+
+                      <span class="validate-icon asterisk"></span>
+                  </td>
+
+                </tr>
+
+          </tbody>
+        </table>
+
+        <!-- ================  -->
+        <!-- Logo URL Fieldset -->
+        <!-- ================  -->
+
+        <fieldset>
+            <legend><%=messages.admin.product.logo %></legend>
+            <table class="horizontal" width="100%">
+                <tbody>
+
+                  <!-- Helper Image  -->
+
+                  <img id="step-one-mini-img" src="./resources/images/headerMiniImage.jpg" alt="Img Here">
+
+                  <!-- Logo Upload  -->
+                  
+                
+                  <tr>
+                    <td></td>
+                    <td>
+                      <input id="fileupload" type="file" >
+                      <!-- <input type="submit" value="Send">  -->
+                      <button type='button' id='logoSubmitBtn'>Start Upload</button>
+                    </td>
+                  </tr>
+
+                  <!-- Logo Link  -->
+
+                  <tr>
+                     <td>
+                      <label for="product_logo_url" class="form-label" title="The URL your logo will link to.">
+                        <%=messages.admin.product.logoUrl %>:
+                      </label>
+                     </td>
+                     <td class="input-field">
+                       <input type="text" id="product_logo_url" name="product_logo_url" class="input-field long-input" 
+                       value="<%-data.logoHref %>"/>
+                     </td>
+                  </tr>
+
+                  <!-- Logo Path  -->
+
+                  <tr>
+                    <td><label for="product_logo_url_path" class="form-label"><%=messages.admin.product.logoUrlPath %>:</label></td>
+                    <td class="input-field">
+                        <input type="text" id="product_logo_url_path" name="product_logo_url_path" class="input-field long-input"
+                        value="<%-data.logoSourceUrl %>"/>
+                    </td>
+                  </tr>
+
+                  <!-- Logo On-Hover  -->
+
+                  <tr>
+                     <td>
+                      <label for="product_logo_tooltip" class="form-label" title="What hovering on your logo will display">
+                        <%=messages.admin.product.logoTooltip %>:
+                      </label> 
+                     </td>
+
+                     <td class="input-field">
+                         <input type="text" id="product_logo_tooltip" name="product_logo_tooltip" class="input-field long-input"
+                          value="<%-data.logoTooltip %>"/>
+                     </td>
+                  </tr>
+    
+                  <!-- Include Nuestar Logo? -->
+
+                  <tr>
+                    <td>
+                        <input type="checkbox" id="include-neustar-logo" name="include_neustar_logo" class="input-field"
+
+                        <% if (data.includeNeustarLogo === "true") print('checked'); %>/>
+                    </td>
+                    <td>
+                        <label for="include-neustar-logo" class="checkbox-label">
+                          <%=messages.admin.product.include_neustar_logo %>
+                        </label>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+            </table>
+        </fieldset>
+
+
+        <!-- ================ -->
+        <!-- API Key Fieldset -->
+        <!-- ================ -->
+
+        <fieldset>
+            <legend><%=messages.admin.service.serverConf %></legend>
+            <table class="horizontal" width="100%">
+                <tbody>
+
+
+                  <tr>
+                    <!-- need to set widths on the first row! -->
+                    <td width=30%></td>
+                    <td width=70%></td>
+                  </tr>
+
+
+                  <tr>
+                    <td><label for="service_api_key" class="form-label"><%=messages.admin.service.apiKey %>:</label></td>
+                    <td class="input-field">
+                        <input type="text" id="service_api_key" name="apiKey" class="input-field long-input" value="<%-data.apiKey %>"/>
+                        <span class="validate-icon asterisk"></span>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td><label for="service_api_secret" class="form-label"><%=messages.admin.service.secret %>:</label></td>
+                    <td class="input-field">
+                        <input type="password" id="service_api_secret" name="secret" class="input-field long-input" value="<%-data.secret %>"/>
+                        <span class="validate-icon asterisk"></span>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td> <input id="api-key-checkbox" type="checkbox"/> </td> 
+                    <td> <label for="api-key-checkbox" class="checkbox-label"> Show API Key </label> </td>
+                  </tr>
+
+                  <script>
+                  // $(function () {
+                  //     $('#fileupload').fileupload({
+
+                  //         url              : '/apps/admin/config/gp.od.dev.nsr',
+                  //         type             : 'PUT',
+                  //         dataType         : 'json',
+                  //         paramName        : 'userLogo',
+                  //         autoUpload       : false,
+                  //         replaceFileInput : false,
+
+                  //         add: function (e, data) {
+                  //                 $('#logoSubmitBtn').click(function () {
+                  //                       data.submit();
+                  //                 });
+                  //               },
+
+                  //         done: function (e, data) {
+                  //             console.log($('#fileupload').get(0).files[0]);
+                  //             console.log("done!");
+                  //         }
+                  //     });
+                  // });
+                  </script>
+                  
+
+                </tbody>
+            </table>
+        </fieldset>
+
+	</form>
+
+	<div class="clearfix"></div>
+    <!--
+	<div id='buttonDiv'>
+		<button id="submit-product-create"><%=messages.common.buttonNext %></button>
+	</div>
+    -->
+</div>

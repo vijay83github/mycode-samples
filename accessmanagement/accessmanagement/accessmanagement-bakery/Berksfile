@@ -1,0 +1,8 @@
+# For more info see: http://berkshelf.com/
+
+site :opscode
+
+cookbook 'java'
+
+cookbook 'neu-service', git: "ssh://git@git.nexgen.neustar.biz:8022/neustar/neu-service-cookbook.git"
+cookbook 'chef-utils', git: "ssh://git@git.nexgen.neustar.biz:8022/neustar/chef-utils-cookbook.git"

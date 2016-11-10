@@ -1,0 +1,309 @@
+
+
+<div>
+  
+  
+  <!-- ======================= -->
+  <!-- Product Info Controller -->
+  <!-- ======================= -->
+  <a ng-href="/apps/logout" class="btn saveFinishBtn" >Logout</a>
+  <div ng-controller="ProductInfoController"> 
+
+    <!-- ============ Pagination ============================================================================ -->
+    <pagination total-items='paginationTotalNum' 
+                page='paginationCurrentNum' 
+                direction-links='false' 
+                on-select-page="fadeIn();goToPage(page);saveTempData()">
+    </pagination>
+    <!-- ============ Controls ============================================================================ -->
+    <a ng-href="#/productSelection">Cancel & Return</a>
+	
+	 <a id="save-and-finish" >
+    <button ng-disabled="userForm.$invalid" 
+            class="btn saveFinishBtn" 
+            ng-class="{ 'btn-success': userForm.$valid, 'btn-danger': userForm.$invalid && userForm.$dirty}" 
+            ng-click="saveAndSubmit()"> 
+            
+              <div ng-hide="saving">Save & Finish</div>
+              <div ng-show="saving">Saving...</div>
+
+    </button>
+    </a>
+    
+    <a ng-href="#/productSelection" class="big-arrow-left" ng-click="goLeft()"> 
+      <span class="arrow-text">Return to Product List</span> 
+    </a>
+
+    <a ng-href="#/productSelection/{{productID}}/configRegistration" ng-click="saveTempData(); goRight()" class='big-arrow-right'>
+      <span class="arrow-text">Next</span> 
+    </a>
+    <!-- ============ Controls End ======================================================================== -->
+
+    <h1> General Info <i ng-click="openVisualExample()" class="fa fa-question-circle vis"></i> </h>
+    <h2> Configuring: <span class="light"> {{productID}} </span> </h2>
+
+
+  <hr>
+
+  <!-- ============  Custom Logo ============ -->
+
+    <h3>Custom Logo</h3>
+
+    <table class="table table-striped table-bordered">
+
+      <th>Property</th>
+      <th>Value</th>
+
+
+      <tr><!-- + + + + + + + + + + + + -->
+
+        <td>Upload Your Own Logo?</td>
+
+        <td> 
+             <form method='put' enctype="multipart/form-data">
+               <input type="file" file-model="myFile" name="userLogo"/>  
+               <span class="existingUpload">(Currently: {{productData.logoName || 'NONE'}})</span><br>
+               <span class="btn btn-primary" ng-click="uploadFile()">Upload</span>
+               <start-stop-spinner stop-condition="uploaded" start-condition="spinning"></start-stop-spinner>
+             </form>
+        </td>
+
+      </tr><!-- + + + + + + + + + + + + -->
+    
+
+      <tr><!-- + + + + + + + + + + + + -->
+
+        <td> Include Neustar Logo? </td>
+
+        <td> 
+          <div class="cool-slider">
+            <input type="checkbox" ng-model="productData.includeNeustarLogo" id="neustarLogo" name="check"> 
+            <label for="neustarLogo"></label>
+          </div>
+          <div class="toggle-text" ng-show="productData.includeNeustarLogo" >Neustar Logo will be included on every page</div>
+          <div class="toggle-text" ng-show="!productData.includeNeustarLogo">Neutar Logo will NOT be included on every page</div>
+        </td>
+
+      </tr><!-- + + + + + + + + + + + + -->
+      
+
+      <tr><!-- + + + + + + + + + + + + -->
+
+        <td>What URL will your logo point to?</td>
+
+        <td> 
+          <!-- <span click-to-edit value='productData.logoLink'></span>  -->
+          <input type="text" ng-model="productData.logoLink" class="form-control" >
+        </td>
+
+      </tr><!-- + + + + + + + + + + + + -->
+
+    </table>
+
+
+    <!-- ============ Roles and Permissions  ============ -->
+
+     <h3>Default User Roles and Permissions</h3> 
+
+      <table class="table table-striped table-bordered">
+
+        <th>Permissions</th>
+        <th>Roles</th>
+
+        <tr><!-- + + + + + + + + + + + + -->
+        
+        <td>
+
+          <div ng-repeat-start="each in productData.permissions"></div>
+        
+            <span class="permission_role" >
+              <span ui-jq="tooltip"
+                    title="{{each.permission.description}}"> {{each.permission.name}} </span>
+            </span>
+
+            <div class="cool-slider permission_role">
+              <input type="checkbox" ng-model="productData.permissions[$index].selected" id="{{each.permission.name}}" name="check"> 
+              <label for="{{each.permission.name}}"></label>
+            </div>
+
+
+          <div ng-repeat-end></div>
+
+          <!-- empty case conditionals -->
+          <div ng-if="!productData.permissions.length">You currently have no IAM <b>permissions</b> for your product.</div>
+
+        </td>
+
+        <!-- ======================= -->
+
+        <td>
+
+          <div ng-repeat-start="each in productData.roles"></div>
+          
+            <span class="permission_role">
+              <span ui-jq="tooltip"
+                    title="{{each.role.description}}"> {{each.role.name}} </span>
+            </span>
+
+            <div class="cool-slider permission_role">
+              <input type="checkbox" ng-model="productData.roles[$index].selected" id="{{each.role.name}}" name="check"> 
+              <label for="{{each.role.name}}"></label>
+            </div>
+
+          <div ng-repeat-end></div>
+
+          <!-- empty case conditionals -->
+          <div ng-if="!productData.roles.length">You currently have no IAM <b>roles</b> for your product.</div>
+          
+        </td>
+
+        </tr><!-- + + + + + + + + + + + + -->
+
+        
+
+      </table>
+
+    <!-- ============ Credentials  ============ -->
+
+     <h3>IAM API Credentials</h3> 
+
+      <table class="table table-striped table-bordered">
+
+        <th>Property</th>
+        <th>Value</th>
+
+        <tr><!-- + + + + + + + + + + + + -->
+
+          <td>
+            <span ui-jq="tooltip" 
+                  title="This is the API key that you should know about.">
+              API Key
+            </span>
+          </td>
+          <!-- <td> <span click-to-edit value='productData.API_Key'></span> </td> -->
+          <td>
+            <div ng-class="{ 'has-error' : userForm.apiKeyFormElement.$invalid }">
+
+              <input class="form-control"
+                     name = "apiKeyFormElement"
+                     required
+                     type="text"
+                     ng-model="productData.API_Key"
+                     ng-minlength="32"
+                     ng-maxlength="32">
+
+              <p ng-show="userForm.apiKeyFormElement.$invalid" class="help-block">Proper API Key Required</p>
+            </div>
+          </td>
+
+        </tr><!-- + + + + + + + + + + + + -->
+
+        <tr><!-- + + + + + + + + + + + + -->
+
+          <td>API Shared Secret</td>
+          <!-- <td> <span click-to-edit value='productData.API_SharedSecret'></span> </td> -->
+          <td>
+            <div ng-class="{ 'has-error' : userForm.apiSecretFormElement.$invalid }">
+
+              <input id="showPassCheckbox" 
+                     type="checkbox" 
+                     ng-init="showPass = false" 
+                     ng-model="showPass" 
+                     style="visibility:visible; width:10px">
+              <label for="showPassCheckbox">Show Password</label>       
+
+                <input class="form-control"
+                       name = "apiSecretFormElement"
+                       ng-show="showPass"
+                       required
+                       type="text"
+                       ng-model="productData.API_SharedSecret"
+                       ng-minlength="16"
+                       ng-maxlength="16">
+
+                <input class="form-control"
+                       name = "apiSecretFormElement"
+                       ng-hide="showPass"
+                       required
+                       type="password"
+                       ng-model="productData.API_SharedSecret"
+                       ng-minlength="16"
+                       ng-maxlength="16">         
+
+              <p ng-show="userForm.apiSecretFormElement.$invalid" class="help-block">Proper API Secret Required</p>
+            </div>
+          </td>
+
+        </tr><!-- + + + + + + + + + + + + -->
+
+      </table>
+
+      <!-- ============ Marketo  ============ -->
+
+       <h3>Marketo</h3> 
+
+        <table class="table table-striped table-bordered">
+
+          <th>Property</th>
+          <th>Value</th>
+
+          <tr><!-- + + + + + + + + + + + + -->
+
+            <td> Enable Marketo? </td>
+
+            <td> 
+              <div class="cool-slider">
+                <input type="checkbox" ng-model="productData.enableMarketo" id="marketo" name="check"> 
+                <label for="marketo"></label>
+              </div>
+              <div class="toggle-text" ng-show="productData.enableMarketo" >Marketo will be used</div>
+              <div class="toggle-text" ng-show="!productData.enableMarketo">Marketo will not be used</div>
+            </td>
+
+          </tr><!-- + + + + + + + + + + + + -->
+         
+
+          </tr><!-- + + + + + + + + + + + + -->
+
+         
+
+        </table>
+	
+		 <h3>Footer Information</h3> 
+
+        <table class="table table-striped table-bordered">
+
+          <th>Property</th>
+          <th>Value</th>
+          
+          <tr><!-- + + + + + + + + + + + + -->
+				<td> Product Name </td>
+            	<td> 
+            	 <div ng-class="{ 'has-error' : userForm.productName.$invalid }">
+            	<input type="text" ng-model="productData.productName" class="form-control"  name = "productName"
+                     required >
+                     <p ng-show="userForm.productName.$invalid" class="help-block">Product Name Required</p>
+                     </div>
+            	</td>
+          </tr>
+          <tr>
+            	<td> Product Buy URL 
+            	</td>
+            	<td>
+                <input type="text" ng-model="productData.productBuyUrl" class="form-control" > 
+                </td>
+          </tr>
+          <tr>
+                <td> Product Service URL </td>
+             	<td><input type="text" ng-model="productData.productServiceUrl" class="form-control">
+            	</td>
+          </tr>
+        </table>
+            
+            
+</div> <!-- ============ End of Product Info Controller ============ -->  
+
+
+</div>
+
+

@@ -1,0 +1,41 @@
+<div class="grid_7">
+    <div class="page-info">
+        <h3 class="one-line"><%=$.i18n.prop("quova.platform.registration.landingView.main_header") %></h3>
+        <p>
+            <%=$.i18n.prop("quova.platform.registration.landingView.main_summary") %>
+        </p>
+    </div>
+</div>
+
+<div class="grid_8">
+    <form id="login-form">
+        <fieldset class="field-group">
+            <dl class="fields-list">
+                <dt><label><%=$.i18n.prop("quova.platform.registration.common.username") %>:</label></dt>
+                <dd><input type="text" id="username" name="username" placeholder="<%=$.i18n.prop('quova.platform.registration.common.username_placeholder') %>"
+                           autocomplete="on" class="placeholder"/>
+
+                <dt>
+                    <label><%=$.i18n.prop("quova.platform.registration.common.password") %>:</label>
+                    <a id="reset-link" href="" tabindex="-1"><small><%=$.i18n.prop("quova.platform.registration.common.reset_link") %></small></a>
+                </dt>
+                <dd><input type="password" id="password" name="password" autocomplete="off"/>
+            </dl>
+
+            <p class="form-actions">
+                <button id="login" type="submit"><%=$.i18n.prop("quova.platform.registration.common.login_button") %></button>
+            </p>
+        </fieldset>
+    </form>
+</div>
+<div class="grid_9">
+    <div class="page-info">
+        <h3><%=$.i18n.prop("quova.platform.registration.landingView.reg_header") %></h3>
+        <p>
+            <%=$.i18n.prop("quova.platform.registration.landingView.reg_summary") %>
+        </p>
+        <p class="form-actions">
+            <button id="register-button"><%=$.i18n.prop("quova.platform.registration.landingView.reg_button") %></button>
+        </p>
+    </div>
+</div>

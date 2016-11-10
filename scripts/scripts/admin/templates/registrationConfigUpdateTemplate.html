@@ -1,0 +1,209 @@
+<p></p>
+<h3 class="one-line">Configure your registration page:</h3>
+<p>
+</p>
+
+
+<div id="new-product-content" class="ui-helper-cleafix">
+	<form id="new-registration-form" method="post">
+
+        <!-- =========== -->
+        <!-- Product ID  -->
+        <!-- =========== -->
+
+		    <table class="horizontal">
+			      <tbody>
+                <tr>
+                    <td width=30%></td>
+                    <td width=70%></td>
+                </tr>
+                <tr>
+                    <td><label for="product_name_regist" class="form-label"><%=messages.admin.product.category %>:</label></td>
+                    <td class="field-group">
+                        <label id="product_name_regist" class="data-label product-name"><%-data.category %></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ==================== -->
+        <!-- Page Titles & Labels -->
+        <!-- ==================== -->
+
+        <fieldset>
+            <legend>Page Titles & Labels</legend>
+            <table class="horizontal" width="100%">
+                <tbody>
+                  
+
+                    <tr>
+                        <img id ="step-three-top" src="./resources/images/registrationTabAndTitles.jpg" alt="">
+                        <td><label for="product_reg_tabLabel" class="form-label"><%=messages.admin.product.regTabLabel %>:</label></td>
+                        <td class="input-field">
+                            <input type="text" id="product_reg_tabLabel" name="product_reg_tabLabel" class="input-field long-input"
+                                   value="<%-data.registrationTabLabel %>"/>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <img id ="step-three-mid" src="./resources/images/registrationTemplate.jpg" alt="">
+                        <td><label for="product_reg_pageTitle" class="form-label"><%=messages.admin.product.regPageTitle %>:</label></td>
+                        <td class="input-field">
+                            <input type="text" id="product_reg_pageTitle" name="product_reg_pageTitle" class="input-field long-input"
+                                   value="<%-data.registrationPageTitle %>"/>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <img id="step-three-bottom" src="./resources/images/registrationCustomForm.jpg" alt="">
+                        <td><label for="product_reg_pageSubTitle" class="form-label"><%=messages.admin.product.regPageSubTitle %>:</label></td>
+                        <td class="input-field">
+                            <input type="text" id="product_reg_pageSubTitle" name="product_reg_pageSubTitle" class="input-field long-input"
+                                   value="<%-data.registrationPageSubTitle %>"/>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </fieldset>
+
+        <!-- ===================== -->
+        <!-- Custom Intro Template -->
+        <!-- ===================== -->
+
+        <fieldset>
+            <legend><%=messages.admin.product.introTemplate %></legend>
+            <table class="horizontal">
+                <tbody>
+
+                    <!-- need to set widths on the first row! -->
+                    <tr>
+                      <td width=30%></td>
+                      <td width=70%></td>
+                    </tr>
+
+
+                    <tr>
+                      <td><label for="product_introFilename" class="form-label"><%=messages.admin.product.introFile %>:</label></td>
+                      <td class="input-field">
+                          <input type="text" id="product_introFilename" name="product_introFilename" class="input-field long-input"
+                                 value="<%-data.introTemplateFilename %>" />
+                      </td>
+                    </tr>
+
+
+                    <tr>
+                      <td><label for="product_introWidth" class="form-label"><%=messages.admin.product.introWidth %>:</label></td>
+                      <td class="input-field">
+                          <input type="text" id="product_introWidth" name="product_introWidth" class="input-field"
+                                 value="<%-data.introTemplateWidth %>"/>
+                      </td>
+                    </tr>
+
+
+                    <tr>
+                      <td class="input-field">
+                          <input type="checkbox" id="product_introLeft" name="product_introLeft" class="input-field"
+                          <% if (data.introTemplatePlaceOnLeft === 'true') { %> checked <% } %> />
+                      </td>
+                      <td><label for="product_introLeft" class="checkbox-label"><%=messages.admin.product.introLeft %></label></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+
+        <!-- ==================== -->
+        <!-- Custom Form Template -->
+        <!-- ==================== -->
+
+        <fieldset>
+            <legend><%=messages.admin.product.formTemplate %></legend>
+
+            <table class="horizontal">
+              <tbody>
+
+                  <!-- need to set widths on the first row! -->
+                  <tr>
+                    <td width=30%></td>
+                    <td width=70%></td>
+                  </tr>
+
+
+                  <tr>
+                      <td class="input-field">
+                          <input type="checkbox" id="product_reg_usernameEmail" name="product_reg_usernameEmail" class="input-field"
+                          <% if (data.registrationUseEmailForUsername === 'true') { %> checked <% } %> />
+                      </td>
+                      <td><label for="product_reg_usernameEmail" class="checkbox-label"><%=messages.admin.product.regUserEmail %></label></td>
+                  </tr>
+
+
+                  <tr>
+                      <td><label for="product_formFilename" class="form-label"><%=messages.admin.product.formFile %>:</label>
+                          <br>
+                      </td>
+                      <td class="input-field">
+                          <textarea cols="150" rows="3" id="product_formFilename" name="product_formFilename"
+                                    class="input-field long-input"><%-data.formTemplatesFiles %></textarea>
+                      </td>
+                  </tr>
+
+
+                  <tr>
+                      <td><label for="product_formWidth" class="form-label"><%=messages.admin.product.formWidth %>:</label></td>
+                      <td class="input-field">
+                          <input type="text" id="product_formWidth" name="product_formWidth" class="input-field"
+                                 value="<%-data.formTemplatesWidth %>"/>
+                      </td>
+                  </tr>
+                  
+                </tbody>
+            </table>
+        </fieldset>
+
+
+        <!-- =================-->
+        <!-- Redirection URLs -->
+        <!-- =================-->
+
+
+        <fieldset>
+            <legend><%=messages.admin.service.post_proc %></legend>
+
+            <table class="horizontal">
+              <tbody>
+
+
+                  <tr>
+                    <td><label for="service_reg_callback" class="form-label"><%=messages.admin.service.regCallbackUrl %>:</label></td>
+                    <td class="input-field" colspan="3">
+                        <input type="text" id="service_reg_callback" name="registrationTargetUrl" class="input-field long-input"
+                               value="<%-data.registrationTargetUrl %>"/>
+                    </td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class="input-field">
+                        <input type="checkbox" id="product_reg_sendEmail" name="product_reg_sendEmail" class="input-field"
+                        <% if (data.registrationSendActivationEmail === 'true') { %> checked <% } %> />
+                    </td>
+                    <td><label for="product_reg_sendEmail" class="checkbox-label"><%=messages.admin.product.sendEmail %></label></td>
+                  </tr>
+
+
+              </tbody>
+            </table>
+        </fieldset>
+
+	</form>
+
+	<div class="clearfix"></div>
+
+    <p></p>
+
+</div>

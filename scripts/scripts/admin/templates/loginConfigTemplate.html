@@ -1,0 +1,91 @@
+<p></p>
+<h3 class="one-line">Setting up your login page:</h3>
+<p>
+</p>
+
+
+<div id="new-product-content" class="ui-helper-cleafix">
+	<form id="new-login-form" method="post">
+		<table class="horizontal">
+			<tbody>
+            <!-- need to set widths on the first row! -->
+            <tr>
+                <td width=30%></td>
+                <td width=70%></td>
+            </tr>
+            <tr>
+                <td><label for="product_name_login" class="form-label"><%=messages.admin.product.category %>:</label></td>
+                <td class="field-group">
+                    <label id="product_name_login" class="data-label product-name"></label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <fieldset>
+            <legend>Custom Template</legend>
+            <table class="horizontal">
+                <tbody>
+                <!-- need to set widths on the first row! -->
+                <tr>
+                    <td width=30%></td>
+                    <td width=70%></td>
+                </tr>
+
+                <tr>
+                    <td><label for="product_login_lTemplate" class="form-label"><%=messages.admin.product.leftTemplate %>:</label></td>
+                    <td>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="use-default-template"
+                                   name="useDefaultTemplate" class="input-field" checked/>
+                            <%=messages.admin.product.useDefaultTemplate %></label>
+
+                        <input type="text" id="product_login_lTemplate" name="product_login_lTemplate"
+                               class="input-field long-input" disabled="disabled"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="product_reg_link" name="product_reg_link" class="input-field" checked/>
+                    </td>
+                    <td><label for="product_reg_link" class="checkbox-label"><%=messages.admin.product.showReg %></label></td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="product_login_embedded" name="product_login_embedded" class="input-field"/>
+                    </td>
+                    <td><label for="product_login_embedded" class="checkbox-label"><%=messages.admin.product.loginEmbedded %></label></td>
+                </tr>
+            </table>
+
+            <legend><%=messages.admin.service.post_proc %></legend>
+                <table class="horizontal">
+                    <tbody>
+                <tr>
+                    <td><label for="service_login_callback" class="form-label"><%=messages.admin.service.loginCallbackUrl %>:</label></td>
+                    <td class="input-field" colspan="3">
+                        <input type="text" id="service_login_callback" name="loginTargetUrl" class="input-field long-input"/>
+                        <span class="validate-icon asterisk"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="service_pwreset_callback" class="form-label"><%=messages.admin.service.passwordResetUrl %>:</label></td>
+                    <td class="input-field" colspan="3">
+                        <input type="text" id="service_pwreset_callback" name="passwordResetTargetUrl" class="input-field long-input"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+
+	</form>
+
+	<div class="clearfix"></div>
+    <!--
+	<div id='buttonDiv'>
+		<button id="submit-product-create"><%=messages.common.buttonNext %></button>
+	</div>
+    -->
+</div>

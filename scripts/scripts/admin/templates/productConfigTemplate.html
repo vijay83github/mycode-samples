@@ -1,0 +1,99 @@
+<p></p>
+<h3 class="one-line">Setting up your product information:</h3>
+<p>
+</p>
+
+
+<div id="new-product-content" class="ui-helper-cleafix">
+	<form id="new-product-form" method="post">
+		<table class="horizontal" width="100%">
+			<tbody>
+                <tr>
+                    <td width="30%"><label for="product_name_create" class="form-label"><%=messages.admin.product.category %>:</label></td>
+                    <td width="70%" class="field-group">
+                        <input type="text" id="product_name_create" name="product_name" class="input-field product-name"/>
+                        <span class="validate-icon asterisk"></span>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <fieldset>
+            <legend><%=messages.admin.product.logo %></legend>
+            <table class="horizontal" width="100%">
+                <tbody>
+                <tr>
+                    <!-- need to set widths on the first row! -->
+                    <td width=30%></td>
+                    <td width=70%></td>
+                </tr>
+
+                <tr>
+                       <td><label for="product_logo_url" class="form-label"><%=messages.admin.product.logoUrl %>:</label></td>
+                       <td class="input-field">
+                           <input type="text" id="product_logo_url" name="product_logo_url" class="input-field long-input"/>
+                       </td>
+                </tr>
+                <tr>
+                    <td><label for="product_logo_url_path" class="form-label"><%=messages.admin.product.logoUrlPath %>:</label></td>
+                    <td class="input-field">
+                        <input type="text" id="product_logo_url_path" name="product_logo_url_path" class="input-field long-input"/>
+                    </td>
+                </tr>
+                <tr>
+                   <td><label for="product_logo_tooltip" class="form-label"><%=messages.admin.product.logoTooltip %>:</label></td>
+                   <td class="input-field">
+                       <input type="text" id="product_logo_tooltip" name="product_logo_tooltip" class="input-field long-input"/>
+                   </td>
+                </tr>
+                <tr>
+                <td>
+                    <input type="checkbox" id="show-neustar-logo" name="neustar_logo" class="input-field" checked/>
+                </td>
+                <td>
+                    <label for="show-neustar-logo" class="checkbox-label">
+                        <%=messages.admin.product.include_neustar_logo %>
+                    </label>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend><%=messages.admin.service.serverConf %></legend>
+            <table class="horizontal" width="100%">
+                <tbody>
+                <tr>
+                    <!-- need to set widths on the first row! -->
+                    <td width=30%></td>
+                    <td width=70%></td>
+                <tr>
+                    <td><label for="service_api_key" class="form-label"><%=messages.admin.service.apiKey %>:</label></td>
+                    <td class="input-field">
+                        <input type="text" id="service_api_key" name="apiKey" class="input-field long-input"/>
+                        <span class="validate-icon asterisk"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="service_api_secret" class="form-label"><%=messages.admin.service.secret %>:</label></td>
+                    <td class="input-field">
+                        <input type="text" id="service_api_secret" name="secret" class="input-field long-input"/>
+                        <span class="validate-icon asterisk"></span>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+
+	</form>
+
+	<div class="clearfix"></div>
+    <!--
+	<div id='buttonDiv'>
+		<button id="submit-product-create"><%=messages.common.buttonNext %></button>
+	</div>
+    -->
+</div>

@@ -1,0 +1,21 @@
+// Customize this file for your project as needed
+/////////////////////////////////////////////////
+
+// If you rename your packages, feel free to rename this..
+mainClassName = ext.serviceClassName
+
+// Add dependencies below..
+// For help with gradle, consult: http://www.gradle.org/docs/current/userguide/userguide_single.html
+dependencies {
+  compile project(':accessmanagement-api')
+  compile "biz.neustar:dropwizard-neustar-client:[0.1.5,)"
+  
+  // dropwizard
+  compile "com.yammer.dropwizard:dropwizard-client:$dropwizVer" // should provide a client
+  testCompile "com.yammer.dropwizard:dropwizard-testing:$dropwizVer"
+  // AWS
+  compile "biz.neustar:dropwizard-aws-addons:[0.1.3,)"
+
+}
+
+

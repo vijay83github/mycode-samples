@@ -1,0 +1,37 @@
+#!/bin/bash
+exec 2>&1
+
+cd <%= @options[:deploy_home] %>/releases/<%= @options[:version] %>/<%= @options[:service_name] %>-<%= @options[:version] %>
+
+<% if @options[:conf] != nil %>
+export CONF="<%= @options[:conf] %>"
+<% end %> 
+
+# we rely on the aws cli being present from the base image.
+type aws-instance-tags
+if [ "$?" == "0" ]; then
+  TAG_ENV_FILE=/tmp/.aws-tag-env.sh
+
+  counter=3
+  while [ $counter -gt 0 ]
+  do
+    touch $TAG_ENV_FILE
+    chmod 600 $TAG_ENV_FILE
+    aws-instance-tags -o text | grep -qi "Name" # needs to have a Name tag at least.
+    if [ "$?" == "0" ]; then
+      tags=`aws-instance-tags -o text -t conf | sed s/.*/"export "\&/g  > $TAG_ENV_FILE`
+      source $TAG_ENV_FILE
+      break
+    fi
+
+    counter=$(( $counter - 1 ))
+    echo "Error retrieving tags, attempts left: $counter"
+    sleep $((10 * $counter))
+  done
+  rm -rf $TAG_ENV_FILE
+fi
+
+ulimit -H -n 10000
+
+exec chpst -u <%= @options[:owner] %> \
+ ./bin/start.sh -f

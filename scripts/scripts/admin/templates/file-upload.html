@@ -1,0 +1,51 @@
+
+<body>
+    <h1>File Upload Progress Demo</h1>
+    
+    <form id="form" enctype="multipart/form-data">
+      What files are you sending? <input type="file" name="files">
+      <input type="submit" value="Send"> 
+    </form>
+    
+    <div class="progress">
+        <div class="bar"></div >
+        <div class="percent">0%</div >
+    </div>
+    
+    <div id="status"></div>
+    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+
+<script>
+
+(function() {    
+   
+$('form').ajaxForm({
+
+    url      : "apps/admin/config/gp.od.dev.nsr",
+    type     : "put",
+    data     : this.model.toJSON(),
+    dataType : "json",
+
+    beforeSend: function() {
+
+    },
+    success: function() {
+
+    },
+    error: function() {
+
+    },
+    complete: function(xhr) {
+        status.html(xhr.responseText);
+    }
+}); 
+
+})();       
+</script>
+
+</body>
+
+
+

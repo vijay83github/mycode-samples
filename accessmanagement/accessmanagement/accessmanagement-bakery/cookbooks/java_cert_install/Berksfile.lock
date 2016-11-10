@@ -1,0 +1,9 @@
+DEPENDENCIES
+  java_cert_install
+    path: .
+    metadata: true
+
+GRAPH
+  java (1.27.0)
+  java_cert_install (0.1.0)
+    java (>= 0.0.0)

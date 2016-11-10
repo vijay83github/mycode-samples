@@ -1,0 +1,33 @@
+<div class="header">
+  <h3 class="text-muted">Nexgen Horizon Configuration Wizard <a ng-href="/apps/logout" class="btn saveFinishBtn" >Logout</a></h3>
+</div>
+
+<!-- ======================= -->
+<!-- Product List Controller -->
+<!-- ==================================================================================== -->
+
+<div id="productContainer">
+
+
+  <h1>List of Products </h1>
+
+  <generic-spinner start-condition="loadingProducts" stop-condition="!loadingProducts"></generic-spinner>
+
+  <div ng-repeat="each in productList">
+    
+    <!-- ======= List of Cards ========= -->
+    <card>{{each}}</card>
+
+  </div>
+
+</div>
+
+<!-- ===========End Products List Controller Scope====================================== -->
+
+<hr>
+
+<!-- ======= Footer ========= -->
+
+<div class="footer">
+  <p>♥ from the Nexgen team</p>
+</div>

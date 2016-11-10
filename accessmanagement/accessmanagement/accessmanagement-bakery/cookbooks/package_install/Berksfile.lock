@@ -1,0 +1,7 @@
+DEPENDENCIES
+  package_install
+    path: .
+    metadata: true
+
+GRAPH
+  package_install (0.1.0)

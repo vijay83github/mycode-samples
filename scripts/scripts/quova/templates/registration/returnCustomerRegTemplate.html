@@ -1,0 +1,28 @@
+<div id="return-reg-header"></div>
+
+<div id="return-reg-content" class="custom-template-container">
+
+</div>
+
+<p></p>
+
+<ul class="horizontal button-group align-right" style="display: none">
+    <li>
+        <button id="cancel-button" class="btn" data-toggle="modal" href="#confirm-cancel">
+            <%-$.i18n.prop("messages.common.cancel_button")%>
+        </button>
+
+    </li>
+    <li><button id="submit-button" class="btn btn-call2action" type="button"><%-data.submitLabel%></button></li>
+</ul>
+
+
+<div id="confirm-cancel" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <p><%=$.i18n.prop("messages.registration.return_customer.confirm_cancel") %></p>
+    </div>
+    <div class="modal-footer">
+        <button id="cancel-registration" type="button" data-dismiss="modal" class="btn"><%=$.i18n.prop("messages.registration.return_customer.confirm_cancel.cancel_button") %></button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary"><%=$.i18n.prop("messages.registration.return_customer.confirm_cancel.continue_button") %></button>
+    </div>
+</div>

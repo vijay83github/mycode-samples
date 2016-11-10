@@ -1,0 +1,185 @@
+
+<div>
+  
+  <!-- ======================= -->
+  <!-- Login Controller        -->
+  <!-- ======================= -->
+  <a ng-href="/apps/logout" class="btn saveFinishBtn" >Logout</a>
+  <div ng-controller="LoginInfoController"> 
+
+    <!-- ============ Pagination ============================================================================ -->
+    <pagination total-items='paginationTotalNum' 
+                page='paginationCurrentNum' 
+                direction-links='false' 
+                on-select-page="fadeIn();goToPage(page);saveTempData()">
+    </pagination>
+    <!-- ============ Controls ==================================================================== -->
+      <a ng-href="#/productSelection">Cancel & Return</a>
+
+      <a ng-href="#/productSelection/{{productID}}/configRegistration" 
+         class="big-arrow-left" 
+         ng-click="saveTempData(); goLeft()"> 
+        <span class="arrow-text">Previous</span> 
+      </a>
+
+      <a class="big-arrow-right"
+         ng-click="saveAndSubmit()"> 
+        <span class="arrow-text">Finish</span> 
+      </a>
+   
+   <a id="save-and-finish" >
+      <button ng-disabled="userForm.$invalid" 
+              class="btn saveFinishBtn" 
+              ng-class="{ 'btn-success': userForm.$valid, 'btn-danger': userForm.$invalid && userForm.$dirty }" 
+              ng-click="saveAndSubmit()"> 
+              
+                <div ng-hide="saving">Save & Finish</div>
+                <div ng-show="saving">Saving...</div>
+              
+      </button>
+      </a>
+
+    <!-- ============ Properties and Values  ==================================================================== -->
+
+    <h1> Login Page <i ng-click="openVisualExample()" class="fa fa-question-circle vis"></i> </h1>
+    <h2> Configuring: <span class="light">{{productID}}</span> </h2>
+
+    <hr>
+
+    <!-- ============ Custom Login Template ============ -->
+
+      <h3>Custom Login Template</h3>
+
+      <table class="table table-striped table-bordered">
+
+        <th>Property</th>
+        <th>Value</th>
+
+        <tr><!-- + + + + + + + + + + + + -->
+          <td>Use Default Template?</td>
+          <td>
+            <div class="cool-slider">
+              <input type="checkbox" ng-model="loginData.loginDefaultTemplate" id="userLoginTemplate" name="check"> 
+              <label for="userLoginTemplate"></label>
+            </div>
+            <div class="toggle-text" ng-show="loginData.loginDefaultTemplate">Default template will be used.</div>
+            <div class="toggle-text" ng-show="!loginData.loginDefaultTemplate">Upload your own template.</div>
+          </td>
+        </tr><!-- + + + + + + + + + + + + -->
+
+        <!-- + + + + + + + + + + + + -->
+        <tr ng-show="!loginData.loginDefaultTemplate" class="showRowAnimation">
+          <td>Template</td>
+          <td>
+              <input type="file" file-model="loginTemplateFile"> 
+              <span class="existingUpload">(Currently: {{loginData.loginTemplate  || 'NONE'}})</span><br> 
+              <span class="btn btn-primary" ng-click="uploadLoginTemplateFile()">Upload</span> 
+              <start-stop-spinner stop-condition="uploadedLoginDefault" start-condition="spinningLoginDefault"></start-stop-spinner>
+          </td>
+        </tr>
+        <!-- + + + + + + + + + + + + -->
+
+        <tr><!-- + + + + + + + + + + + + -->
+          <td>Show Registration Link?</td>
+          <td>
+            <div class="cool-slider">
+              <input type="checkbox" ng-model="loginData.showRegistrationLink" id="regLink" name="check"> 
+              <label for="regLink"></label>
+            </div>
+            <div class="toggle-text" ng-show="loginData.showRegistrationLink">Login page will show link to Registration Page</div>
+            <div class="toggle-text" ng-show="!loginData.showRegistrationLink">Login page will not have link to Registration Page</div>
+          </td>
+        </tr><!-- + + + + + + + + + + + + -->
+
+        <tr><!-- + + + + + + + + + + + + -->
+          <td>
+            <span ui-jq="tooltip"
+                  title="You will get HTML to copy-paste into your own website.">
+                  Embed Login
+            </span>
+          </td>
+
+          <td>
+          <!--   <div class="cool-slider">
+              <input type="checkbox" ng-model="loginData.embedLogin" id="emailUsername" name="check"> 
+              <label for="emailUsername"></label>
+            </div> -->
+
+            <div class="toggle-text" >
+              Include this code in your webpage: <br>
+              <div class='btn btn-primary' ng-click="openModal()">Show Code</div>
+            </div>
+            
+            <!-- <div class="toggle-text" ng-show="!loginData.embedLogin">You do not want an embeddable template</div> -->
+          </td>
+        </tr><!-- + + + + + + + + + + + + -->
+
+      </table>
+
+    <!-- ============ Redirection URLs ================= -->
+
+      <h3> Other </h3>
+
+      <table class="table table-striped table-bordered">
+
+        <th>Property</th>
+        <th>Value</th>
+
+        <tr><!-- + + + + + + + + + + + + -->
+          <td>Login Button Directs To:</td>
+          <!-- <td> <span click-to-edit value='loginData.loginButtonDirectsTo'></span> </td> -->
+          <td> 
+            <div ng-class="{ 'has-error' : userForm.logButtonRedirect.$invalid }">
+
+              <input type="text" 
+                     name="logButtonRedirect"
+                     required
+                     ng-model="loginData.loginButtonDirectsTo" 
+                     class="form-control">
+
+              <p ng-show="userForm.logButtonRedirect.$invalid" class="help-block">This is required</p>
+            </div>
+          </td>
+        </tr><!-- + + + + + + + + + + + + -->
+
+        <tr><!-- + + + + + + + + + + + + -->
+          <td>Password Reset Directs To:</td>
+          <!-- <td> <span click-to-edit value='loginData.passwordResetDirectsTo'></span> </td> -->
+          <td> 
+            <div ng-class="{ 'has-error' : userForm.passResetButtonRedirect.$invalid }">
+
+              <input type="text" 
+                     name="passResetButtonRedirect"
+                     required
+                     ng-model="loginData.passwordResetDirectsTo" 
+                     class="form-control">
+
+              <p ng-show="userForm.passResetButtonRedirect.$invalid" class="help-block">This is required</p>
+            </div>
+          </td>
+        </tr><!-- + + + + + + + + + + + + -->
+
+        <tr><!-- + + + + + + + + + + + + -->
+          <td>Support Email to Show:</td>
+          <td> 
+            <div ng-class="{ 'has-error' : userForm.supportEmail.$invalid }">
+
+              <input type="text" 
+                     name="supportEmail"
+                     required
+                     ng-pattern="/.+\@.+\..+/"
+                     ng-model="loginData.supportEmail" 
+                     class="form-control">
+
+              <p ng-show="userForm.supportEmail.$invalid" class="help-block">Proper email address is required.</p>
+            </div>
+          </td>
+        </tr><!-- + + + + + + + + + + + + -->
+
+      </table>
+
+  </div><!-- end LoginInfoController scope -->
+
+<!-- ============ End of Login Controller ============ -->  
+
+</div>

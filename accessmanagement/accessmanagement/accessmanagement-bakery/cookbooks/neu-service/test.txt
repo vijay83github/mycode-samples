@@ -1,0 +1,1 @@
+knife node show `hostname` -k deployer.pem -s https://cm.nexgen.neustar.biz:4443 -u deployer
